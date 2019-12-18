@@ -63,7 +63,7 @@
       position: absolute;
       top: 50%;
 
-      /*NOTE - all this stuff can be played with in Chrome Dev tools - start doing this more */
+      /*NOTE - all this stuff can be played with in Chrome Dev tools */
       transform-origin: 100%;               /* NOTE: this is default 50% - if we don't set this - the hand will rotate in the exact middle of the line (not what we want) */
       transform: rotate(90deg);             /* start at 12 oclock position */
       transition: all 0.5s;
@@ -97,7 +97,7 @@
         minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
         secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
 
-        // NOTE: when the hands get to 360 - they go all the way back around to reset - not a big deal but looks a little weird
+        // NOTE: when the hands get to 360 - they go all the way back around to reset - not a big deal for this but looks a little weird
     }
 
     setInterval(setDate, 1000);
