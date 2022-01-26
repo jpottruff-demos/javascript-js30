@@ -85,4 +85,7 @@ html {
 
   .panel.open {
     font-size: 40px;
+    /* We are doing this because we want it to take 5x the amount of room as the rest of them */
+    /* When NOT open - they are all at `flex:1` / take up equal amounts of space */
+    flex: 5;
   }
