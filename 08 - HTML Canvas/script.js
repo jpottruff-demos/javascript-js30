@@ -20,13 +20,13 @@ const saturation = '100%'; // % - percent sign was breaking it for some reason
 const lightness = '50%'; // % - percent sign was breaking it for some reason
 
 // Width
-ctx.lineWidth = 100;
+ctx.lineWidth = 0;
+let increment = true;
+const MAX_WIDTH = 100;
 
 function draw(e) {
     if (!isDrawing) return;
-    console.log(e, hue)
     ctx.strokeStyle = `hsl(${hue},${saturation},${lightness})`;
-
 
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
@@ -37,9 +37,16 @@ function draw(e) {
     // lastY = e.offsetY;
     [lastX, lastY] = [e.offsetX, e.offsetY];
 
+    // Color
     // HSL NOTE: once you hit 360 (upper limit), it will treat the numbers as if they had looped back to 0 so you could just keep incrementing
     // hue++;
     (hue >= 360) ? hue = 0 : hue++;
+
+    // Width
+    if (ctx.lineWidth >= MAX_WIDTH || ctx.lineWidth <= 1) {
+        increment = !increment;
+    }
+    increment ? ctx.lineWidth++ : ctx.lineWidth--;
 }
 
 canvas.addEventListener('mousemove', draw);
