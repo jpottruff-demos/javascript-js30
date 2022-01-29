@@ -5,7 +5,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Context Setup
+// Context Setup (defaults)
 ctx.strokeStyle = '#BADA55';
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
@@ -14,8 +14,20 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 
+// Color https://mothereffinghsl.com/
+let hue = 0;
+const saturation = '100%'; // % - percent sign was breaking it for some reason
+const lightness = '50%'; // % - percent sign was breaking it for some reason
+
+// Width
+ctx.lineWidth = 100;
+
 function draw(e) {
     if (!isDrawing) return;
+    console.log(e, hue)
+    ctx.strokeStyle = `hsl(${hue},${saturation},${lightness})`;
+
+
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(e.offsetX, e.offsetY);
@@ -24,6 +36,10 @@ function draw(e) {
     // lastX = e.offsetX;
     // lastY = e.offsetY;
     [lastX, lastY] = [e.offsetX, e.offsetY];
+
+    // HSL NOTE: once you hit 360 (upper limit), it will treat the numbers as if they had looped back to 0 so you could just keep incrementing
+    // hue++;
+    (hue >= 360) ? hue = 0 : hue++;
 }
 
 canvas.addEventListener('mousemove', draw);
