@@ -24,6 +24,9 @@ ctx.lineWidth = 0;
 let increment = true;
 const MAX_WIDTH = 100;
 
+// Photoshop blend mode https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+// ctx.globalCompositeOperation = 'multiply';
+
 function draw(e) {
     if (!isDrawing) return;
     ctx.strokeStyle = `hsl(${hue},${saturation},${lightness})`;
