@@ -4,6 +4,7 @@ const video = player.querySelector('.viewer');
 const progress = player.querySelector('.progress');
 const progressBar = player.querySelector('.progress__filled');
 const toggle = player.querySelector('.toggle');
+const fullScreen = player.querySelector('.full-screen')
 const skipButtons = player.querySelectorAll('[data-skip]');
 const ranges = player.querySelectorAll('.player__slider');
 
@@ -37,6 +38,7 @@ function scrub(e) {
     video.currentTime = scrubTime;
 }
 
+
 /* Event Listeners */
 video.addEventListener('click', togglePlay);
 toggle.addEventListener('click', togglePlay);
@@ -57,5 +59,7 @@ progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
 progress.addEventListener('mousedown', () => mousedown = true);
 progress.addEventListener('mouseup', () => mousedown = false);
 
+// https://stackoverflow.com/questions/1055214/is-there-a-way-to-make-html5-video-fullscreen
+fullScreen.addEventListener('click', () => video.requestFullscreen());
 
 
