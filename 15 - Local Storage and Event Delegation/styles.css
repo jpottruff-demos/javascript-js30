@@ -69,14 +69,28 @@ html {
   .plates input:checked + label:before {
     content: "🌮";
   }
+
+  .btn-wrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
   
   .add-items {
     margin-top: 20px;
   }
   
-  .add-items input {
+  .add-items input, .select-all-btn, .clear-all-btn {
     padding: 10px;
     outline: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
+
+  .select-all-btn { 
+    background-color: #8EFF9B;
+  }
+  .clear-all-btn { 
+    background-color: #FFCEB8;
+  }
+
   
