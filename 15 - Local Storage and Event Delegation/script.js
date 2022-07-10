@@ -1,3 +1,5 @@
+const selectAll = document.querySelector('.select-all-btn');
+const clear = document.querySelector('.clear-all-btn');
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
 const items = JSON.parse(localStorage.getItem('items')) || [];
@@ -46,6 +48,24 @@ function setLocalStorageItems() {
     localStorage.setItem('items', JSON.stringify(items));
 }
 
+function clearDone(_e) {
+    items.forEach(item => {
+        item.done = false;
+    });
+    populateList(items, itemsList);
+    setLocalStorageItems();
+}
+
+function allDone(_e) {
+    items.forEach(item => {
+        item.done = true;
+    });
+    populateList(items, itemsList);
+    setLocalStorageItems()
+}
+
 addItems.addEventListener('submit', addItem);
+clear.addEventListener('click', clearDone);
+selectAll.addEventListener('click', allDone);
 itemsList.addEventListener('click', toggleDone);
 populateList(items, itemsList);
