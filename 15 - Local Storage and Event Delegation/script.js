@@ -15,7 +15,7 @@ function addItem(e) {
     };
     items.push(item);
     populateList(items, itemsList);
-    localStorage.setItem('items', JSON.stringify(items))
+    setLocalStorageItems();
     this.reset();
 }
 
@@ -31,5 +31,21 @@ function populateList(plates = [], platesList) {
     }).join('');
 }
 
+function toggleDone(e) {
+    if (!e.target.matches('input')) {
+        return;
+    }
+
+    const el = e.target;
+    const index = el.dataset.index;
+    items[index].done = !items[index].done;
+    setLocalStorageItems();
+}
+
+function setLocalStorageItems() {
+    localStorage.setItem('items', JSON.stringify(items));
+}
+
 addItems.addEventListener('submit', addItem);
+itemsList.addEventListener('click', toggleDone);
 populateList(items, itemsList);
