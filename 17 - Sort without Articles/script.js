@@ -1,5 +1,6 @@
 const bands = [
   "The Plot in You",
+  "There for Tomorrow",
   "The Devil Wears Prada",
   "Pierce the Veil",
   "Norma Jean",
@@ -13,4 +14,16 @@ const bands = [
   "Anywhere But Here",
   "An Old Dog",
 ];
-console.log(bands);
+
+const sortedBands = bands.sort((a, b) =>
+  stripArticle(a.toLowerCase()) > stripArticle(b.toLowerCase()) ? 1 : -1
+);
+
+function stripArticle(name) {
+  // Note the space
+  return name.replace(/^(a |an |the )/i, "");
+}
+
+document.querySelector("#bands").innerHTML = sortedBands
+  .map((band) => `<li>${band}</li>`)
+  .join(""); // no commas from array
