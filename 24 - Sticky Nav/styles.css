@@ -82,6 +82,11 @@ li.logo {
   font-size: 30px;
 }
 
+.fixed-nav li.logo {
+  /* something bigger than it will ever be; helps with transition above */
+  max-width: 500px;
+}
+
 li.logo a {
   color: black;
 }
