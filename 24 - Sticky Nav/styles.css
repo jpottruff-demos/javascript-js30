@@ -27,6 +27,11 @@ body {
   transition: transform 0.5s;
 }
 
+.fixed-nav .site-wrap {
+  /* slight scale effect on the page (note: .98 above / transition) */
+  transform: scale(1);
+}
+
 header {
   text-align: center;
   height: 50vh;
