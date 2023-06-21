@@ -107,6 +107,7 @@ nav ul {
   opacity: 0;
 }
 
+/* Make it visible when its open; positioning handled in JS */
 .dropdownBackground.open {
   opacity: 1;
 }

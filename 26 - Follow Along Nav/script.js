@@ -3,8 +3,29 @@ const background = document.querySelector(".dropdownBackground");
 const nav = document.querySelector(".top");
 
 function handleEnter() {
+  // Add classes
   this.classList.add("trigger-enter");
   setTimeout(() => this.classList.add("trigger-enter-active"), 150); // see CSS note
+
+  // Manipulate background
+  background.classList.add("open");
+  const navCoordinates = nav.getBoundingClientRect();
+  const dropdown = this.querySelector(".dropdown");
+  const dropdownCoordinates = dropdown.getBoundingClientRect();
+
+  const coordinates = {
+    height: dropdownCoordinates.height,
+    width: dropdownCoordinates.width,
+    top: dropdownCoordinates.top - navCoordinates.top,
+    left: dropdownCoordinates.left - navCoordinates.left,
+  };
+
+  background.style.setProperty("height", `${coordinates.height}px`);
+  background.style.setProperty("width", `${coordinates.width}px`);
+  background.style.setProperty(
+    "transform",
+    `translate(${coordinates.left}px,${coordinates.top}px`
+  );
 }
 
 function handleLeave() {
