@@ -35,6 +35,7 @@ function handleEnter() {
 
 function handleLeave() {
   this.classList.remove("trigger-enter", "trigger-enter-active");
+  background.classList.remove("open");
 }
 
 triggers.forEach((trigger) =>
