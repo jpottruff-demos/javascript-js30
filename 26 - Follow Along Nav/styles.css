@@ -64,7 +64,7 @@ nav ul {
 }
 
 .cool > li {
-  position: relative;
+  position: relative; /* NOTE: This matters for this lesson */
   display: flex;
   justify-content: center;
 }
@@ -82,10 +82,12 @@ nav ul {
   display: none;
 }
 
+/* See note below on `trigger-enter-active` */
 .trigger-enter .dropdown {
   display: block;
 }
 
+/* Cannot do display: block and opacity 1 at the same time. See setTimeout in handleEnter() */
 .trigger-enter-active .dropdown {
   opacity: 1;
 }
