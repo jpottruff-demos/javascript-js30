@@ -5,7 +5,12 @@ const nav = document.querySelector(".top");
 function handleEnter() {
   // Add classes
   this.classList.add("trigger-enter");
-  setTimeout(() => this.classList.add("trigger-enter-active"), 150); // see CSS note
+  setTimeout(() => {
+    // Prevents some flickering with content when changing hover state rapidly
+    if (this.classList.contains("trigger-enter")) {
+      this.classList.add("trigger-enter-active");
+    }
+  }, 150); // see CSS note
 
   // Manipulate background
   background.classList.add("open");
