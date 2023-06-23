@@ -3,27 +3,21 @@ let isDown = false;
 let startX;
 let scrollLeft;
 
-slider.addEventListener("mousedown", (e) => {
+function captureInitialState(e) {
   // Capture initial vairables
   isDown = true;
   slider.classList.add("active");
   startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
-});
+}
 
-slider.addEventListener("mouseleave", () => {
+function setDefaultState() {
   // Set default state
   isDown = false;
   slider.classList.remove("active");
-});
+}
 
-slider.addEventListener("mouseup", () => {
-  // Set default state
-  isDown = false;
-  slider.classList.remove("active");
-});
-
-slider.addEventListener("mousemove", (e) => {
+function performSlideEffect(e) {
   // Do slide effect
   if (!isDown) return;
   e.preventDefault();
@@ -31,4 +25,9 @@ slider.addEventListener("mousemove", (e) => {
   //   const walk = x - startX;
   const walk = (x - startX) * 3; // * gives more of an effect
   slider.scrollLeft = scrollLeft - walk; // * including initial scrollLeft avoids some jumpiness
-});
+}
+
+slider.addEventListener("mousedown", captureInitialState);
+slider.addEventListener("mouseleave", setDefaultState);
+slider.addEventListener("mouseup", setDefaultState);
+slider.addEventListener("mousemove", performSlideEffect);
