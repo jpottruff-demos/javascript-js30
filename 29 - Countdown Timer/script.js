@@ -2,6 +2,7 @@ const timerDisplay = document.querySelector(".display__time-left");
 const endTime = document.querySelector(".display__end-time");
 const buttons = document.querySelectorAll("[data-time]");
 let countdown;
+
 function startTimer() {
   timer(parseInt(this.dataset.time));
 }
@@ -44,3 +45,12 @@ function displayEndTime(timestamp) {
 }
 
 buttons.forEach((button) => button.addEventListener("click", startTimer));
+document.customForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const mins = this.minutes.value;
+  const isNumber = !isNaN(mins); // running this in the if statement causes problems
+  if (isNumber) {
+    timer(mins * 60);
+  }
+  this.reset();
+});
