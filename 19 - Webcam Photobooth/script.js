@@ -42,7 +42,7 @@ function takePhoto() {
   const link = document.createElement("a");
   link.href = data;
   link.setAttribute("download", imageTitle);
-  link.textContent = "Download Image";
+  link.innerHTML = `<img src=${data} alt="${imageTitle}" />`;
   strip.insertBefore(link, strip.firstChild);
 }
 
