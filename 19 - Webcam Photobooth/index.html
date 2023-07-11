@@ -12,25 +12,73 @@
     <div class="photobooth">
       <div class="controls">
         <button onClick="takePhoto()">Take Photo</button>
-        <div class="rgb">
-          <label for="rmin">Red Min:</label>
-          <input type="range" min="0" max="255" name="rmin" />
-          <label for="rmax">Red Max:</label>
-          <input type="range" min="0" max="255" name="rmax" />
 
-          <br />
+        <form name="effectForm">
+          <fieldset>
+            <legend>Select Effects:</legend>
+            <div>
+              <input
+                type="radio"
+                id="effect1"
+                name="effect"
+                value="NONE"
+                checked
+              />
+              <label for="effect1">None</label>
 
-          <label for="gmin">Green Min:</label>
-          <input type="range" min="0" max="255" name="gmin" />
-          <label for="gmax">Green Max:</label>
-          <input type="range" min="0" max="255" name="gmax" />
+              <input type="radio" id="effect2" name="effect" value="RED" />
+              <label for="effect2">Red Effect</label>
 
-          <br />
+              <input
+                type="radio"
+                id="effect3"
+                name="effect"
+                value="RGB_SPLIT"
+              />
+              <label for="effect3">Mail</label>
 
-          <label for="bmin">Blue Min:</label>
-          <input type="range" min="0" max="255" name="bmin" />
-          <label for="bmax">Blue Max:</label>
-          <input type="range" min="0" max="255" name="bmax" />
+              <input
+                type="radio"
+                id="effect4"
+                name="effect"
+                value="GREEN_SCREEN"
+              />
+              <label for="effect4">Green Screen</label>
+            </div>
+
+            <div>
+              <input
+                type="checkbox"
+                id="ghostEffectControl"
+                name="ghostEffect"
+              />
+              <label for="chbx">Enable Ghost Effect</label>
+            </div>
+          </fieldset>
+        </form>
+
+        <div>
+          <h2>Green Screen Controls</h2>
+          <div class="rgb">
+            <label for="rmin">Red Min:</label>
+            <input type="range" min="0" max="255" name="rmin" />
+            <label for="rmax">Red Max:</label>
+            <input type="range" min="0" max="255" name="rmax" />
+
+            <br />
+
+            <label for="gmin">Green Min:</label>
+            <input type="range" min="0" max="255" name="gmin" />
+            <label for="gmax">Green Max:</label>
+            <input type="range" min="0" max="255" name="gmax" />
+
+            <br />
+
+            <label for="bmin">Blue Min:</label>
+            <input type="range" min="0" max="255" name="bmin" />
+            <label for="bmax">Blue Max:</label>
+            <input type="range" min="0" max="255" name="bmax" />
+          </div>
         </div>
       </div>
 

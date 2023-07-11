@@ -3,6 +3,8 @@ const canvas = document.querySelector(".photo");
 const ctx = canvas.getContext("2d");
 const strip = document.querySelector(".strip");
 const snap = document.querySelector(".snap");
+const effectRadios = document.effectForm.effect;
+const ghostEffect = document.effectForm.ghostEffect;
 
 function getVideo() {
   navigator.mediaDevices
@@ -36,12 +38,8 @@ function paintToCanvas() {
     let pixels = ctx.getImageData(0, 0, width, height);
 
     // * Apply effects (comment in which ever you want to use)
-    // pixels = redEffect(pixels);
-    // pixels = rgbSplit(pixels);
-    // pixels = greenScreen(pixels);
-
-    // * ghost effect! (can play with the alpha number)
-    ctx.globalAlpha = 0.1;
+    pixels = applyEffect(pixels);
+    ctx.globalAlpha = ghostEffect.checked ? 0.1 : 1;
 
     ctx.putImageData(pixels, 0, 0);
   }, 16);
@@ -59,6 +57,21 @@ function takePhoto() {
   link.setAttribute("download", imageTitle);
   link.innerHTML = `<img src=${data} alt="${imageTitle}" />`;
   strip.insertBefore(link, strip.firstChild);
+}
+
+function applyEffect(pixels) {
+  // NOTE: values on form controls
+  switch (effectRadios.value) {
+    case "RED":
+      return redEffect(pixels);
+    case "RGB_SPLIT":
+      return rgbSplit(pixels);
+    case "GREEN_SCREEN":
+      return greenScreen(pixels);
+    case "NONE":
+    default:
+      return pixels;
+  }
 }
 
 function redEffect(pixels) {
