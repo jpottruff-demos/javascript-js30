@@ -29,6 +29,13 @@ function paintToCanvas() {
   // returning allows you to call stopInterval if needed
   return setInterval(() => {
     ctx.drawImage(video, 0, 0, width, height);
+
+    // You get a HUGE array (millions long) of pixels
+    // [111, 222, 333, 255, ... ]
+    // First Pixel = rgba(111,222,333,255);
+    let pixels = ctx.getImageData(0, 0, width, height);
+    pixels = redEffect(pixels);
+    ctx.putImageData(pixels, 0, 0);
   }, 16);
 }
 
@@ -44,6 +51,17 @@ function takePhoto() {
   link.setAttribute("download", imageTitle);
   link.innerHTML = `<img src=${data} alt="${imageTitle}" />`;
   strip.insertBefore(link, strip.firstChild);
+}
+
+function redEffect(pixels) {
+  for (let i = 0; i < pixels.data.length; i += 4) {
+    // NOTE: math here can be played with; just messes with the colors
+    pixels.data[i + 0] = pixels.data[i + 0] + 100; // red
+    pixels.data[i + 1] = pixels.data[i + 1] - 50; // green
+    pixels.data[i + 2] = pixels.data[i + 2] * 0.5; // blue
+    // pixels.data[i + 3]; // alpha
+  }
+  return pixels;
 }
 
 getVideo();
