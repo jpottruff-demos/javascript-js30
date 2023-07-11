@@ -38,7 +38,10 @@ function paintToCanvas() {
     // * Apply effects (comment in which ever you want to use)
     // pixels = redEffect(pixels);
     // pixels = rgbSplit(pixels);
-    pixels = greenScreen(pixels);
+    // pixels = greenScreen(pixels);
+
+    // * ghost effect! (can play with the alpha number)
+    ctx.globalAlpha = 0.1;
 
     ctx.putImageData(pixels, 0, 0);
   }, 16);
